@@ -37,6 +37,7 @@ get_neighbors(Boid * boid,Boid * allboids,int nBoids)
 void
 update_bird(Boid * boid,double dt)
 {
+  boid->theta += boid->dtheta*dt;
   boid->x += boid->dx*cos(boid->theta)*dt;
   boid->y -= boid->dx*sin(boid->theta)*dt;
 
@@ -113,8 +114,8 @@ int main(int argc, char *argv[]) {
     myBoids[i].x=(WIDTH-1)*rand()/RAND_MAX+1;
     myBoids[i].y=(HEIGHT-1)*rand()/RAND_MAX+1;
     myBoids[i].dx=10;
-    myBoids[i].dtheta=0;
-    myBoids[i].theta=0;
+    myBoids[i].dtheta=.05*rand()/RAND_MAX;
+    myBoids[i].theta=rand()/RAND_MAX;
   }
 
   WINDOW * mybox=subwin(stdscr, WIDTH, HEIGHT, 0,0 );
